@@ -1,0 +1,29 @@
+{
+    "schemaVersion": 1,
+    "id": "${id}",
+    "version": "${version}",
+    "name": "${name}",
+    "description": "A lightweight improvement mod for Minecraft servers.",
+    "authors": [
+        "MeteorOfTime"
+    ],
+    "contact": {
+        "homepage": "https://github.com/MShower/Refine",
+        "sources": "https://github.com/MShower/Refine"
+    },
+    "icon": "assets/refine/icon.png",
+    "environment": "*",
+    "entrypoints": {
+        "main": [
+            "mshower.refine.Refine"
+        ]
+    },
+    "mixins": [
+        "refine.mixins.json"
+    ],
+    "depends": {
+        "fabricloader": ">=0.11.4",
+        "minecraft": "${minecraft_dependency}"
+    },
+    "license": "MIT"
+}
