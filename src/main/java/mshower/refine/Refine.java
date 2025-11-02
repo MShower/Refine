@@ -1,9 +1,16 @@
 package mshower.refine;
 
+import mshower.refine.command.RefineCommand;
+import mshower.refine.command.SpecCommand;
+import mshower.refine.config.RefineConfig;
+import mshower.refine.utils.EndermanGriefingBlacklistControl;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.metadata.ModMetadata;
 
+//#if MC >= 11900
+import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
+//#endif
 //#if MC >= 11802
 //$$ import com.mojang.logging.LogUtils;
 //$$ import org.slf4j.Logger;
@@ -32,6 +39,16 @@ public class Refine implements ModInitializer
         MOD_NAME = metadata.getName();
         MOD_VERSION = metadata.getVersion().getFriendlyString();
 
+        //#if MC<11900
+        //$$ net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess) -> SpecCommand.register(dispatcher));
+        //$$ net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess) -> RefineCommand.register(dispatcher));
+        //#else
+        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> SpecCommand.register(dispatcher));
+        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> RefineCommand.register(dispatcher));
+
+        //#endif
+        RefineConfig.load();
+        EndermanGriefingBlacklistControl.loadFromYaml(RefineConfig.INSTANCE.endermanGriefingBlacklistConfig.EndermanGriefingBlacklist);
         LOGGER.info("Refine Loaded!");
     }
 }

@@ -4,6 +4,14 @@
     "package": "mshower.refine.mixins",
     "compatibilityLevel": "{{COMPATIBILITY_LEVEL}}",
     "mixins": [
+        "EndermanEntityMixin",
+        "opPlayerNoCheating.FillCommandMixin",
+        "opPlayerNoCheating.GameModeCommandMixin",
+        "opPlayerNoCheating.GiveCommandMixin",
+        "opPlayerNoCheating.ServerPlayNetworkHandlerMixin",
+        "opPlayerNoCheating.SetBlockCommandMixin",
+        "opPlayerNoCheating.SummonCommandMixin",
+        "opPlayerNoCheating.TeleportCommandMixin"
     ],
     "client": [],
     "injectors": {
